@@ -10,14 +10,17 @@ exportPath $buildInputs
 exportPath $baseInputs
 
 function unpackPhase() {
-  wget $url/$src
-  tar -xzf $src
+  local dir=${src%%.*}
 
-  for d in *; do
-    if [ -d $d ]; then
-      cd $d
-    fi
-  done
+  if [ ! -f $src ]; then
+    wget $url/$src
+  fi
+  
+  if [ -d $dir ]; then
+    tar -xzf $src
+  fi
+
+  cd $dir
 }
 
 function configurePhase() {
