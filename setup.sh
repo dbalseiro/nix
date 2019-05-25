@@ -10,13 +10,13 @@ exportPath $buildInputs
 exportPath $baseInputs
 
 function unpackPhase() {
-  local dir=${src%%.*}
+  local dir=`echo $src | sed s/\.tar\.gz$//`
 
   if [ ! -f $src ]; then
     wget $url/$src
   fi
   
-  if [ -d $dir ]; then
+  if [ ! -d $dir ]; then
     tar -xzf $src
   fi
 
