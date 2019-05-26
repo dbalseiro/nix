@@ -10,4 +10,4 @@ let
     graphviz = callPackage ./graphviz.nix {};
     graphvizCore = callPackage ./graphviz.nix { gdSupport = false; };
   };
-in pkgs<Paste>
+in pkgs
